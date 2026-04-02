@@ -14,15 +14,15 @@ export default function ListProduct({ laptops }) {
   return (
     <div className="w-full gap-4 bg-gray-100 p-4">
       {laptops.map((laptop) => (
-       <Link
-  to={`/product/${laptop.id}`}   // ✅ pass laptop id
-  key={laptop.id}
-  className="block hover:opacity-90 transition"
->
-
+        <Link
+          to={`/product/${laptop.laptopId}`}
+          key={laptop.laptopId || laptop._id}
+          className="block hover:opacity-90 transition"
+        >
           <LongCard
+            laptopId={laptop.laptopId}
             name={laptop.name}
-            rating={laptop.rating.toFixed(1)}
+            rating={laptop.rating?.toFixed?.(1) || laptop.rating}
             price={laptop.price}
             image={laptop.image}
             processor={laptop.processor}
@@ -32,10 +32,10 @@ export default function ListProduct({ laptops }) {
             os={laptop.os}
             warrantyYears={laptop.warrantyYears}
             mrp={laptop.mrp}
+            laptop={laptop}
           />
         </Link>
       ))}
     </div>
   );
 }
-  

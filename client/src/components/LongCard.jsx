@@ -1,6 +1,8 @@
 import React from "react";
+import { useCompare } from "../context/CompareContext";
 
 const LongCard = ({
+  laptopId,
   name,
   rating,
   price,
@@ -12,14 +14,20 @@ const LongCard = ({
   os,
   warrantyYears,
   mrp,
+  laptop,
 }) => {
+  const { addToCompare, compareList } = useCompare();
+  const isInCompare = compareList.some(
+    (l) => (l.laptopId || l._id) === laptopId
+  );
+
   return (
     <div className="p-2 w-full">
       <div
         className="relative flex flex-col md:flex-row bg-white border border-gray-300 rounded-lg shadow-sm p-5 
                    hover:shadow-md transition-all duration-200"
       >
-        {/* 🖼️ Product Image */}
+        {/* Product Image */}
         <img
           src={
             image ||
@@ -29,9 +37,8 @@ const LongCard = ({
           className="w-40 h-40 md:w-44 md:h-44 object-contain self-center md:self-start"
         />
 
-        {/* 📝 Middle Content */}
+        {/* Middle Content */}
         <div className="mt-4 md:mt-0 md:ml-6 flex flex-col justify-start flex-1">
-          {/* Title */}
           <h2 className="text-base md:text-lg font-semibold text-gray-800 hover:text-blue-600 cursor-pointer">
             {name}
           </h2>
@@ -40,9 +47,6 @@ const LongCard = ({
           <div className="flex items-center gap-2 mt-1">
             <span className="primary text-white text-xs font-semibold px-2 py-0.5 rounded">
               {rating} ★
-            </span>
-            <span className="text-gray-500 text-xs md:text-sm">
-              90 Ratings & 16 Reviews
             </span>
           </div>
 
@@ -63,12 +67,27 @@ const LongCard = ({
             <li>OS: {os}</li>
             <li>Warranty: {warrantyYears} Year Onsite</li>
           </ul>
+
+          {/* Compare Button */}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (laptop) addToCompare(laptop);
+            }}
+            disabled={isInCompare}
+            className={`mt-3 text-xs px-4 py-1.5 rounded-full font-medium w-fit active:scale-95 transition ${
+              isInCompare
+                ? "bg-gray-200 text-gray-500 cursor-default"
+                : "primary text-white cursor-pointer hover:brightness-105"
+            }`}
+          >
+            {isInCompare ? "✓ Added" : "+ Compare"}
+          </button>
         </div>
 
-        {/* 💰 Price Section */}
-        <div
-          className="md:absolute md:top-5 md:right-6 mt-4 md:mt-0 text-right md:text-right flex md:block flex-col items-end"
-        >
+        {/* Price Section */}
+        <div className="md:absolute md:top-5 md:right-6 mt-4 md:mt-0 text-right md:text-right flex md:block flex-col items-end">
           <p className="text-xl md:text-2xl font-bold text-gray-900">
             ₹{price.toLocaleString()}
           </p>
@@ -88,9 +107,6 @@ const LongCard = ({
           <p className="text-green-700 text-xs md:text-sm font-medium">
             Bank Offer
           </p>
-
-          {/* Assured Logo */}
-         
         </div>
       </div>
     </div>

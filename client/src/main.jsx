@@ -8,18 +8,21 @@ import Aboutus from './pages/Aboutus';
 import Contact from './pages/Contact';
 import Products from './pages/Products';
 import Product from './pages/Product.jsx';
+import Compare from './pages/Compare.jsx';
+import { AuthProvider } from './context/AuthContext.jsx';
+import { CompareProvider } from './context/CompareContext.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />, // Always shows Navbar
+    element: <App />,
     children: [
       { path: '/', element: <Home /> },
       { path: '/about', element: <Aboutus /> },
       { path: '/contact', element: <Contact /> },
       { path: '/products', element: <Products /> },
       { path: '/product/:id', element: <Product /> },
-
+      { path: '/compare', element: <Compare /> },
       { path: '*', element: <div className="p-8 text-lg">Page under construction 🚧</div> }
     ]
   }
@@ -27,6 +30,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <CompareProvider>
+        <RouterProvider router={router} />
+      </CompareProvider>
+    </AuthProvider>
   </StrictMode>
 );

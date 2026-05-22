@@ -214,6 +214,25 @@ export const laptopsData = [
     connectivity: { wifi: "Wi-Fi 6E", bluetooth: "5.1" },
     warrantyYears: 1,
   },
+  {
+    laptopId: "lap-0012",
+    name: "kavin",
+    brand: "Samsung",
+    series: "Galaxy Book",
+    price: 94990,
+    rating: 4.7,
+    processor: { brand: "Intel", model: "Core i7-1260P", cores: 12, threads: 16, baseClock: "2.1 GHz", boostClock: "4.7 GHz" },
+    ram: { sizeGB: 16, type: "LPDDR5", speedMHz: 5200 },
+    storage: [{ type: "NVMe", sizeGB: 512 }],
+    graphics: { type: "integrated", model: "Iris Xe" },
+    display: { sizeInches: 15.6, resolution: "1920x1080", refreshHz: 60, panel: "AMOLED", aspect: "16:9" },
+    battery: { capacityWh: 63, claimedHours: "Up to 15 hrs", fastCharge: true },
+    weightKg: 1.1,
+    os: "Windows 11 Home",
+    ports: ["USB-C", "USB-A", "HDMI", "3.5mm"],
+    connectivity: { wifi: "Wi-Fi 6E", bluetooth: "5.1" },
+    warrantyYears: 1,
+  },
 ];
 
 // Run as script

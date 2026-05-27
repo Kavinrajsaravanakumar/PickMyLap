@@ -3,15 +3,15 @@ pipeline {
 
     stages {
 
-        stage('Hello') {
+        stage('Check Files') {
             steps {
-                echo 'Jenkins pipeline working!'
+                bat 'dir'
             }
         }
 
-        stage('Test') {
+        stage('Check Docker') {
             steps {
-                echo 'Build successful!'
+                bat 'docker --version'
             }
         }
 

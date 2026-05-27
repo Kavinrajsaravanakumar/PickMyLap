@@ -9,12 +9,17 @@ pipeline {
             }
         }
 
-        stage('Check Docker') {
+        stage('Docker Version') {
             steps {
                 sh 'docker --version'
             }
         }
 
+        stage('Docker Compose Build') {
+            steps {
+                sh 'docker compose build'
+            }
+        }
+
     }
-    
 }

@@ -5,13 +5,13 @@ pipeline {
 
         stage('Check Files') {
             steps {
-                bat 'dir'
+                sh 'ls'
             }
         }
 
         stage('Check Docker') {
             steps {
-                bat 'docker --version'
+                sh 'docker --version'
             }
         }
 

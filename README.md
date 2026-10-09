@@ -30,7 +30,3 @@ PickMyLap is a full-stack web application designed to help users find laptops ba
 ### Other Tools
 - Axios (API communication)
 - TensorFlow.js (optional recommendation logic)
-
----
-
-## Project Structure
